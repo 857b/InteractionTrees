@@ -1,7 +1,7 @@
 (coq.extraction
   (prelude IO)
   (extracted_modules io)
-  (theories ITree)
+  (theories ExtLib Paco ITree)
 )
 
 (tests

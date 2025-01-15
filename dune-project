@@ -1,5 +1,5 @@
-(lang dune 3.14)
-(using coq 0.7)
+(lang dune 3.17)
+(using coq 0.10)
 (name coq-itree)
 (version dev)
 (maintainers "Li-yao Xia <lysxia@gmail.com>")
