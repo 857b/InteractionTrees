@@ -22,15 +22,16 @@ Set Primitive Projections.
     on the values of [X]. *)
 
 Section itree.
+  Universe u_itree u_event_answer u_event_fam u_result.
 
-  Context {E : Type -> Type} {R : Type}.
+  Context {E : Type@{u_event_answer} -> Type@{u_event_fam}} {R : Type@{u_result}}.
 
   (** The type [itree] is defined as the final coalgebra ("greatest
       fixed point") of the functor [itreeF]. *)
-  Variant itreeF (itree : Type) :=
+  Variant itreeF@{} (itree : Type@{u_itree}) : Type@{u_itree} :=
   | RetF (r : R)
   | TauF (t : itree)
-  | VisF {X : Type} (e : E X) (k : X -> itree)
+  | VisF {X : Type@{u_event_answer}} (e : E X) (k : X -> itree)
   .
 
   (** We define non-recursive types such as [itreeF] using the [Variant]
@@ -38,7 +39,7 @@ Section itree.
       [Variant] does not generate any induction schemes (which are
       unnecessary). *)
 
-  CoInductive itree : Type := go
+  CoInductive itree@{} : Type@{u_itree} := go
   { _observe : itreeF itree }.
 
   (** A primitive projection, such as [_observe], must always be

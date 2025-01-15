@@ -39,24 +39,24 @@ Section Operations.
     fun _ v => match v : void with end.
 
   (* [sum] with its injection functions seen as relations form the coproduct *)
-  Global Instance Case_rel : Case relationH sum :=
+  Global Instance Case_rel : Case relationH Function.sum :=
     fun _ _ _ l r => case_sum _ _ _ l r.
 
-  Global Instance Inl_rel : Inl relationH sum :=
+  Global Instance Inl_rel : Inl relationH Function.sum :=
     fun A B => fun_rel inl.
 
-  Global Instance Inr_rel : Inr relationH sum :=
+  Global Instance Inr_rel : Inr relationH Function.sum :=
     fun _ _ => fun_rel inr.
 
   (* Interestingly, it is also [sum] and not [prod] that forms the product *)
 
-  Global Instance Pair_rel : Pair relationH sum :=
+  Global Instance Pair_rel : Pair relationH Function.sum :=
     fun A B C l r c => case_sum _ _ _ (l c) (r c).
 
-  Global Instance Fst_rel : Fst relationH sum :=
+  Global Instance Fst_rel : Fst relationH Function.sum :=
     fun _ _ x a => x = inl a.
 
-  Global Instance Snd_rel : Snd relationH sum :=
+  Global Instance Snd_rel : Snd relationH Function.sum :=
     fun _ _ x a => x = inr a.
 
   (* My first intuition for the product was indeed to use [prod] as follows.
@@ -76,10 +76,10 @@ Section Operations.
   (* Both ⊕ and ⊗ are bimaps with respect to with relationH forms a monoidal category.
      I am not sure if they are isomorphic to the bimaps derived from the product and coproduct?
    *)
-  Global Instance Bimap_sum_rel : Bimap relationH sum :=
+  Global Instance Bimap_sum_rel : Bimap relationH Function.sum :=
     fun (a b c d : Type) R S => R ⊕ S.
 
-  Global Instance AssocR_sum : AssocR relationH sum :=
+  Global Instance AssocR_sum : AssocR relationH Function.sum :=
     fun A B C ab_c a_bc =>
       match ab_c, a_bc with
       | inl (inl a), inl a'       => a = a'
@@ -88,7 +88,7 @@ Section Operations.
       | _, _                      => False
       end.
 
-  Global Instance AssocL_sum : AssocL relationH sum :=
+  Global Instance AssocL_sum : AssocL relationH Function.sum :=
     fun A B C ab_c a_bc =>
       match ab_c, a_bc with
       | inl a, inl (inl a')       => a = a'
@@ -97,49 +97,49 @@ Section Operations.
       | _, _                      => False
       end.
 
-  Global Instance UnitL_sum : UnitL relationH sum void :=
+  Global Instance UnitL_sum : UnitL relationH Function.sum void :=
     fun _ ma a' => match ma with
                 | inl abs => match abs with end
                 | inr a => a = a'
                 end.
 
-  Global Instance UnitR_sum : UnitR relationH sum void :=
+  Global Instance UnitR_sum : UnitR relationH Function.sum void :=
     fun _ ma a' => match ma with
                 | inr abs => match abs with end
                 | inl a => a = a'
                 end.
 
-  Global Instance UnitL'_sum : UnitL' relationH sum void :=
+  Global Instance UnitL'_sum : UnitL' relationH Function.sum void :=
     fun _ a ma' => match ma' with
                 | inl abs => match abs with end
                 | inr a' => a = a'
                 end.
 
-  Global Instance UnitR'_sum : UnitR' relationH sum void :=
+  Global Instance UnitR'_sum : UnitR' relationH Function.sum void :=
     fun _ a ma' => match ma' with
                 | inr abs => match abs with end
                 | inl a' => a = a'
                 end.
 
-  Global Instance Bimap_prod_rel : Bimap relationH prod :=
+  Global Instance Bimap_prod_rel : Bimap relationH Function.prod :=
     fun (a b c d : Type) R S => R ⊗ S.
 
-  Global Instance AssocR_prod : AssocR relationH prod :=
+  Global Instance AssocR_prod : AssocR relationH Function.prod :=
     fun A B C '(a,b,c) '(a',(b',c')) => a = a' /\ b = b' /\ c = c'.
 
-  Global Instance AssocL_prod : AssocL relationH prod :=
+  Global Instance AssocL_prod : AssocL relationH Function.prod :=
     fun A B C '(a,(b,c)) '(a',b',c') => a = a' /\ b = b' /\ c = c'.
 
-  Global Instance UnitL_prod : UnitL relationH prod unit :=
+  Global Instance UnitL_prod : UnitL relationH Function.prod unit :=
     fun _ '(_,a) a' =>  a = a'.
 
-  Global Instance UnitR_prod : UnitR relationH prod unit :=
+  Global Instance UnitR_prod : UnitR relationH Function.prod unit :=
     fun _ '(a,_) a' => a = a'.
 
-  Global Instance UnitL'_prod : UnitL' relationH prod unit :=
+  Global Instance UnitL'_prod : UnitL' relationH Function.prod unit :=
     fun _ a '(_,a') => a = a'.
 
-  Global Instance UnitR'_prod : UnitR' relationH prod unit :=
+  Global Instance UnitR'_prod : UnitR' relationH Function.prod unit :=
     fun _ a '(a',_) => a = a'.
 
   (* The [transpose] operation forms a [dagger] category *)
@@ -352,7 +352,7 @@ Section Facts.
     Proof.
       split.
       - cbv; split.
-        + intros ? ? ?; repeat destructn prod.
+        + intros ? ? ?; repeat destructn.
           destructn ex; repeat destructn prod; repeat destructn and; subst; auto.
         + intros ((? & ?) & ?) ((x & y) & z) EQ; inv EQ.
           exists (x,(y,z)); intuition.

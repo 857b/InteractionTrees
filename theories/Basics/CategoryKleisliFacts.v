@@ -77,14 +77,14 @@ Qed.
 Local Opaque bind ret eq1.
 
 Lemma pure_assoc_l {a b c : Type}
-  : assoc_l (C := Kleisli m) (bif := sum)
+  : assoc_l (C := Kleisli m) (bif := Function.sum)
   ⩯ pure (m := m) (a := a + (b + c))%type assoc_l.
 Proof.
   cbv; intros x; destruct x as [ | []]; try setoid_rewrite bind_ret_l; reflexivity.
 Qed.
 
 Lemma pure_assoc_r {a b c : Type} :
-  (@assoc_r _ (Kleisli m) sum _ _ _ _) ⩯ (@pure m _ ((a + b) + c)%type _ assoc_r).
+  (@assoc_r _ (Kleisli m) Function.sum _ _ _ _) ⩯ (@pure m _ ((a + b) + c)%type _ assoc_r).
 Proof.
   cbv; intros x; destruct x as [[] | ]; try setoid_rewrite bind_ret_l; reflexivity.
 Qed.
@@ -126,7 +126,7 @@ Global Instance Proper_case_Kleisli {a b c}
   : @Proper (Kleisli m a c -> Kleisli m b c -> _)
             (eq2 ==> eq2 ==> eq2) case_.
 Proof.
-  repeat intro; destruct (_ : _ + _); cbn; auto.
+  repeat intro; destruct (_ : Function.sum _ _); cbn; auto.
 Qed.
 
 (** *** [pure] is well-behaved *)
@@ -287,7 +287,7 @@ Proof.
   reflexivity.
 Qed.
 
-Global Instance Coproduct_Kleisli : Coproduct (Kleisli m) sum.
+Global Instance Coproduct_Kleisli : Coproduct (Kleisli m) Function.sum.
 Proof.
   constructor.
   - intros a b c f g.
@@ -308,7 +308,7 @@ Proof.
   - typeclasses eauto.
 Qed.
 
-Global Instance bimap_id_kleisli : BimapId (Kleisli m) sum.
+Global Instance bimap_id_kleisli : BimapId (Kleisli m) Function.sum.
 Proof.
   unfold BimapId, bimap, Bimap_Coproduct.
   intros.
@@ -342,12 +342,13 @@ Qed.
   Qed.
 
 
-Global Instance bimap_cat_kleisli : BimapCat (Kleisli m) sum.
+Global Instance bimap_cat_kleisli : BimapCat (Kleisli m) Function.sum.
 Proof.
   unfold BimapCat, bimap, Bimap_Coproduct.
   intros.
   unfold inl_, inr_, Inl_Kleisli, Inr_Kleisli.
   rewrite! cat_pure. rewrite! cat_case.
+  unfold Function.sum.
   rewrite map_inl_case_kleisli.
   rewrite map_inr_case_kleisli.
   reflexivity.
@@ -365,7 +366,7 @@ Proof.
   - unfold cat, Cat_Kleisli, inl_. rewrite H0. reflexivity.
 Qed.
 
-Global Instance Bifunctor_Kleisli : Bifunctor (Kleisli m) sum.
+Global Instance Bifunctor_Kleisli : Bifunctor (Kleisli m) Function.sum.
 constructor; typeclasses eauto.
 Qed.
 

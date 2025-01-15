@@ -63,16 +63,16 @@ Section Instances.
   #[global] Instance Id_Kleisli : Id_ (Kleisli m) :=
     fun _ => pure id.
 
-  #[global] Instance Case_Kleisli : Case (Kleisli m) sum :=
+  #[global] Instance Case_Kleisli : Case (Kleisli m) Function.sum :=
     fun _ _ _ l r => case_sum _ _ _ l r.
 
-  #[global] Instance Inl_Kleisli : Inl (Kleisli m) sum :=
+  #[global] Instance Inl_Kleisli : Inl (Kleisli m) Function.sum :=
     fun _ _ => pure inl.
 
-  #[global] Instance Inr_Kleisli : Inr (Kleisli m) sum :=
+  #[global] Instance Inr_Kleisli : Inr (Kleisli m) Function.sum :=
     fun _ _ => pure inr.
 
-  #[global] Instance Iter_Kleisli `{MonadIter m} : Iter (Kleisli m) sum :=
+  #[global] Instance Iter_Kleisli `{MonadIter m} : Iter (Kleisli m) Function.sum :=
     fun a b => Basics.iter.
 
 End Instances.
