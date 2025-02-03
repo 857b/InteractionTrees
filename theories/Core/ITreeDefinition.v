@@ -23,6 +23,7 @@ Set Primitive Projections.
 
 Section itree.
   Universe u_itree u_event_answer u_event_fam u_result.
+  Constraint u_itree < Universes.u_std.
 
   Context {E : Type@{u_event_answer} -> Type@{u_event_fam}} {R : Type@{u_result}}.
 
@@ -96,9 +97,9 @@ Definition observe {E R} (t : itree E R) : itree' E R := @_observe E R t.
     writing [Vis e (fun x => Ret x)] instead of [Vis e Ret]. (In this
     particular case, this is [ITree.trigger].)
 *)
-Notation Ret x := (go (RetF x)).
-Notation Tau t := (go (TauF t)).
-Notation Vis e k := (go (VisF e k)).
+Notation Ret x := (go (RetF (itree := itree _ _) x)).
+Notation Tau t := (go (TauF (itree := itree _ _) t)).
+Notation Vis e k := (go (VisF (itree := itree _ _) e k)).
 
 (** ** Main operations on [itree] *)
 

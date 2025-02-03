@@ -15,7 +15,7 @@ Set Warnings "-future-coercion-class-field".
 
 #[global] Tactic Notation "intros !" := repeat intro.
 
-Definition relationH (A B : Type) := A -> B -> Prop.
+Definition relationH@{u | u < Universes.u_std} (A B : Type@{u}) := A -> B -> Prop.
 
 Section RelationH_Operations.
 

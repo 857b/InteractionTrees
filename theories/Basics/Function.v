@@ -15,10 +15,7 @@ Import CatNotations.
 Universes u_Fun_obj u_Fun_hom.
 (** The following universe constraints are used to prevents
     unwanted unifications, in particular when using tactics. *)
-Constraint Function.u_Fun_obj < Datatypes.sum.u0.
-Constraint Function.u_Fun_obj < Datatypes.sum.u1.
-Constraint Function.u_Fun_obj < Datatypes.prod.u0.
-Constraint Function.u_Fun_obj < Datatypes.prod.u1.
+Constraint Function.u_Fun_obj < Universes.u_std.
 
 (** The name of the category. *)
 Definition Fun (A B : Type@{u_Fun_obj}) : Type@{u_Fun_hom} := A -> B.
