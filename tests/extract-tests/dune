@@ -1,6 +1,6 @@
 (coq.extraction
  (prelude Tests)
- (theories ExtLib Paco ITree)
+ (theories Stdlib ExtLib Paco ITree)
  (extracted_modules test))
 
 (tests

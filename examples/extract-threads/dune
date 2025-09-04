@@ -1,7 +1,7 @@
 (coq.extraction
   (prelude ExtractThreadsExample)
   (extracted_modules MultiThreadedPrinting)
-  (theories ExtLib Paco ITree ITreeExamples)
+  (theories Stdlib ExtLib Paco ITree ITreeExamples)
 )
 
 (tests

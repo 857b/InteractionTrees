@@ -3,4 +3,4 @@
 (coq.theory
  (name ITree)
  (package coq-itree)
- (theories ExtLib Paco))
+ (theories Stdlib ExtLib Paco))

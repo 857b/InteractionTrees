@@ -8,7 +8,7 @@
     ReadmeExample
     ITreePredicatesExample
     MultiThreadedPrinting)
-  (theories ITree)
+  (theories Stdlib ITree)
 )
 
 ; Extraction is in a separate directory (extraction/) because dune's

@@ -1,7 +1,7 @@
 (coq.extraction
   (prelude ImpTest)
   (extracted_modules imp_test)
-  (theories ExtLib Paco ITree ITreeTutorial)
+  (theories Stdlib ExtLib Paco ITree ITreeTutorial)
 )
 
 (tests
