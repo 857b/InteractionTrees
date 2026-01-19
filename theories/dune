@@ -1,6 +1,6 @@
 (include_subdirs qualified)
 
-(coq.theory
+(rocq.theory
  (name ITree)
  (package coq-itree)
  (theories Stdlib ExtLib Paco))

@@ -1,4 +1,4 @@
-(coq.extraction
+(rocq.extraction
   (prelude IO)
   (extracted_modules io)
   (theories Stdlib ExtLib Paco ITree)

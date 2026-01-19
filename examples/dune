@@ -1,4 +1,4 @@
-(coq.theory
+(rocq.theory
   (name ITreeExamples)
   (modules
     IntroductionSolutions
@@ -12,4 +12,4 @@
 )
 
 ; Extraction is in a separate directory (extraction/) because dune's
-; coq.extraction assigns it another library name than ITreeExamples
+; rocq.extraction assigns it another library name than ITreeExamples
