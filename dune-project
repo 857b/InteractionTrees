@@ -1,4 +1,4 @@
-(lang dune 3.17)
+(lang dune 3.21)
 (using coq 0.10)
 (name coq-itree)
 (version dev)

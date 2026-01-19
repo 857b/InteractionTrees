@@ -11,7 +11,7 @@ tags: ["org:deepspec"]
 homepage: "https://github.com/DeepSpec/InteractionTrees"
 bug-reports: "https://github.com/DeepSpec/InteractionTrees/issues"
 depends: [
-  "dune" {>= "3.17"}
+  "dune" {>= "3.21"}
   "coq"
   "coq-ext-lib"
   "coq-paco"
@@ -19,6 +19,7 @@ depends: [
   "odoc" {with-doc}
 ]
 dev-repo: "git+https://github.com/DeepSpec/InteractionTrees.git"
+x-maintenance-intent: ["(latest)"]
 build: [
   [ "./fixup.sh" ]
   [ "dune" "subst"] {pinned}
